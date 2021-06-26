@@ -3,125 +3,143 @@
 
 <head>
   <title>Data Table</title>
-  <link rel="stylesheet" type="text/css" href="./style.css" />
-  <script async src="./app.js"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
 
 <body>
 
-  <nav class="sidebar">
-    <div class="sidebar__home"></div>
-    <div class="sidebar__menu">
-      <div class="sidebar__menu__link sidebar__menu__link--frame sidebar__menu__link--active">
-        <img
-          src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/frame.svg"
-          alt="frame" />
+  <div id="main-app">
+    <nav class="d-flex flex-column justify-content-between align-items-center">
+      <div class="menu d-flex flex-column">
+        <a href="#" class="text-center">AC</a>
+        <a href="#"><i class="fas fa-ad"></i></a>
       </div>
-      <div class="sidebar__menu__link sidebar__menu__link--folder">
-        <img
-          src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/folder.svg"
-          alt="folder" />
+      <div class="user-center">
+        <a href="#"><i class="fas fa-user-circle"></i></a>
       </div>
-      <div class="sidebar__menu__link sidebar__menu__link--mail">
-        <img
-          src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/mail.svg"
-          alt="mail" />
+    </nav>
+    <main id="main-content">
+      <div id="card-list" class="scrollbar card-list-panel py-4 d-flex flex-column align-items-center">
+        <h4>網紅列表</h4>
       </div>
-      <!-- darkmode toggle -->
-      <div class="sidebar__menu__link">
-        <label class="sidebar__darkmode__label" for="dark__mode__toggle"></label>
-        <input type="checkbox" class="sidebar__darkmode__input" id="dark__mode__toggle" />
-      </div>
-    </div>
-  </nav>
-
-  <main class="main">
-    <h1 class="main__title">Campaign</h1>
-    <div class="table__container">
-          <table class="main__table">
-            <thead class="table__thead">
-              <tr class="table__header table__row">
-                <th class="table__cell table__cell--checkbox">
-                  <input type="checkbox" />
-                </th>
-                <th class="table__cell table__cell--id">ID</th>
-                <th class="table__cell table__cell--name">名字</th>
-                <th class="table__cell table__cell--advertiser">
-                  <span class="cell__advertiser__line">Advertiser</span>
-                  <span class="cell__advertiser__line cell__advertiser__line--group">Group</span>
-                </th>
-                <th class="table__cell table__cell--description">Descripton</th>
-                <th class="table__cell table__cell--price">
-                  <span>Price</span>
-                  <img class="header__cell__icon header__cell__icon--right"
-                    src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/sort.svg" />
-                </th>
-                <th class="table__cell table__cell--starttime">
-                  <span>Start Time</span>
-                  <img class="header__cell__icon header__cell__icon--right"
-                    src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/sort.svg" />
-                </th>
-                <th class="table__cell table__cell--endtime">
-                  <span>End Time</span>
-                  <img class="header__cell__icon header__cell__icon--right"
-                    src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/sort.svg" />
-                </th>
-                <th class="table__cell table__cell--action">Action</th>
-              </tr>
-            </thead>
-            <tbody class="table__body">
-              <tr class="table__row">
-                <td class="table__cell table__cell--checkbox">
-                  <input type="checkbox" class="td__toggle" />
-                </td>
-                <td class="table__cell table__cell--id">ID</td>
-                <td class="table__cell table__cell--name">Name</td>
-                <td class="table__cell table__cell--advertiser">
-                  <span class="cell__advertiser__line">Advertiser</span>
-                  <span class="cell__advertiser__line cell__advertiser__line--group">Group</span>
-                </td>
-                <td class="table__cell table__cell--description">Description</td>
-                <td class="table__cell table__cell--price">Price</td>
-                <td class="table__cell table__cell--starttime">Start Time</td>
-                <td class="table__cell table__cell--endtime">End Time</td>
-                <td class="table__cell table__cell--action">
-                  <img class="cell__action__icon"
-                    src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/menu.svg"
-                    id="action__input_1" alt="menu" />
-                  <!-- menu -->
-                  <div class="action__menu hidden" role="dialog" aria-modal="true" aria-labelledby="action__input_1"
-                    id="action__menu_1">
-                    <menu class="menu__body">
-                      <menuitem class="menu__item">
-                      <img
-                        src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/duplicate.svg"
-                        class="menu__item__icon" />
-                      <span>Duplicate</span>
-                      </menuitem>
-                      <menuitem class="menu__item">
-                      <img
-                        src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/edit.svg"
-                        class="menu__item__icon" />
-                      <span>Edit</span>
-                      </menuitem>
-                      <menuitem class="menu__item">
-                      <img
-                        src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/delete.svg"
-                        class="menu__item__icon" />
-                      <span>Delete</span>
-                      </menuitem>
-                    </menu>
+      <div class="right-content">
+        <div id="step-control" class="stepper-panel">
+          <div class="container stepper-container">
+            <div class="step active">
+              <div class="circle-container"></div>
+              <div class="label-container">啟用廣告服務</div>
+            </div>
+            <div class="step ">
+              <div class="circle-container"></div>
+              <span class="connect-line"></span>
+              <div class="label-container">廣告設定</div>
+            </div>
+            <div class="step">
+              <div class="circle-container"></div>
+              <span class="connect-line"></span>
+              <div class="label-container">付款帳號設定</div>
+            </div>
+          </div>
+        </div>
+        <div class="scrollbar form-panel">
+          <div class="container form-container">
+            <form id="a-form">
+              <div class="form-content">
+                <div class="part">
+                  <h4>廣告服務條款</h4>
+                  <div class="my-2 scroll terms-panel">
+                    <div class="terms-content">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales
+                        mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam
+                        consequat urna vitae ipsum pulvinar, in blandit purus eleifend.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales
+                        mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam
+                        consequat urna vitae ipsum pulvinar, in blandit purus eleifend.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales
+                        mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam
+                        consequat urna vitae ipsum pulvinar, in blandit purus eleifend.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales
+                        mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam
+                        consequat urna vitae ipsum pulvinar, in blandit purus eleifend.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales
+                        mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam
+                        consequat urna vitae ipsum pulvinar, in blandit purus eleifend.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales
+                        mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam
+                        consequat urna vitae ipsum pulvinar, in blandit purus eleifend.</p>
+                    </div>
                   </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-  </main>
+                  <div class="form-row d-flex align-items-center">
+                    <input id="terms-check" type="checkbox">
+                    <label for="">我已詳細閱讀以上條款內容，並同意接受內容所有款項規定</label>
+                  </div>
+                </div>
+                <div class="part d-none">
+                  <div class="form-row ">
+                    <label>廣告走期</label><input id="a-time-start" name="a-time-start" type="date" required> - <input
+                      id="a-time-end" name="a-time-end" type="date" class="w-25" required>
+                  </div>
+                  <div class="form-row"><label>廣告類別</label>
+                    <div class="select-wrapper">
+                      <select name="a-type" id="a-type" required>
+                        <option value="" disabled selected>請選擇廣告類別</option>
+                        <option value="game">遊戲</option>
+                        <option value="fashion">時尚</option>
+                        <option value="travel">旅遊</option>
+                        <option value="shopping">購物</option>
+                        <option value="all">不拘</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row ">
+                    <label for="">受眾性別</label>
+                    <div class="d-flex align-items-center">
+                      <input name="ta-gender" type="radio" value="male"><label for="">男</label>
+                      <input name="ta-gender" type="radio" value="female"><label for="">女</label>
+                      <input name="ta-gender" type="radio" value="all"><label for="">不拘</label>
+                    </div>
+                  </div>
+                  <div class="form-row"><label for="">受眾年齡</label><input type="number" min="13" max="65" value="13"> -
+                    <input type="number" min="13" max="65" value="65"></div>
+                  <div class="form-row "><label for="">受眾地點</label>
+                    <div class="select-wrapper">
+                      <select name="a-type" id="a-location" required>
+                        <option value="" disabled selected>請選擇受眾地點</option>
+                        <option value="">北部</option>
+                        <option value="">中部</option>
+                        <option value="">南部</option>
+                        <option value="">中部</option>
+                        <option value="">不拘</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="part d-none">
+                  <div class="form-row"><label for="">銀行代碼</label><input id="bank-code" type="text" placeholder="請輸入銀行代碼">
+                  </div>
+                  <div class="form-row"><label for="">銀行帳號</label><input id="bank-account" type="text" class="w-50"
+                      placeholder="請輸入銀行帳號"></div>
+                  <div class="form-row"><label for="">帳戶姓名</label><input id="account-name" type="text"
+                      placeholder="請輸入帳戶姓名"></div>
+                  <div class="form-row"><label for="">備註</label><textarea id="note" class="w-50 scrollbar"
+                      rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div id="btn-control" class="control-panel d-flex justify-content-end">
+                <button disabled class="btn btn-outline">上一步</button>
+                <button class="btn btn-primary ml-4">下一步</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 
-
-
+<script src="/app.js"></script>
 </body>
 
 </html>

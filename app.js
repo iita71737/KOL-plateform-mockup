@@ -1,98 +1,157 @@
-// target the input element
-const input = document.getElementById("action__input_1");
-// click handler
-const toggleMenu = event => {
-  // target the menu element
-  const menu = document.getElementById("action__menu_1");
-  menu.classList.toggle("hidden");
-};
-// bind the event
-input.addEventListener("click", toggleMenu);
+const influencers = [
+  {
+    id: 1,
+    name: '都省睿',
+    youtube: '阿D數學',
+    fb: 'RayDuMath',
+    ig: 'raydumath',
+  },
+  {
+    id: 2,
+    name: '蔡偉加',
+    youtube: '蔡阿加',
+    fb: 'WithGiaLoveTaiwan',
+    ig: 'ygia0712',
+  },
+  {
+    id: 3,
+    name: '那群人TGOP',
+    youtube: 'TGOP 那群人',
+    fb: 'thosegroupofpeople',
+    ig: 'thosegroupofpeople',
+  },
+  {
+    id: 4,
+    name: '洪萬萬',
+    youtube: '萬萬進食中',
+    fb: 'Wangeating',
+    ig: 'whshu_',
+  },
+  {
+    id: 5,
+    name: '咚咚',
+    youtube: '台灣大胃王咚咚',
+    fb: 'Dong.Dong.Bigeater',
+    ig: 'dongdong_eating',
+  },
+  {
+    id: 6,
+    name: 'BEAUTIFULGIRLS',
+    youtube: '正骨女孩',
+    fb: 'Beautifulgirls.Fans',
+    ig: 'Beautifulgirls520',
+  },
+  {
+    id: 7,
+    name: 'THE JuN',
+    youtube: 'THE JuN',
+    fb: 'the.jun.7965',
+    ig: 'the.jun_666',
+  },
+  {
+    id: 8,
+    name: '九太娛樂狼人殺',
+    youtube: '九太電視娛樂百分百',
+    fb: 'NTV100E',
+    ig: 'ntve100',
+  },
+  {
+    id: 9,
+    name: '眼眶地方電視台',
+    youtube: '眼眶地方電視台',
+    fb: 'EYEFRAMELTV',
+    ig: 'eyeframeltv',
+  },
+  {
+    id: 10,
+    name: '不礙眼',
+    youtube: '不礙眼',
+    fb: 'Hacting4',
+    ig: 'h_acting4',
+  },
+]
 
+const cardList = document.getElementById('card-list')
+const form = document.getElementById('a-form')
+const formParts = form.querySelectorAll('.part')
+const stepControl = document.getElementById('step-control')
+const steps = stepControl.querySelectorAll('.step')
+const btnControl = document.getElementById('btn-control')
+const nextBtn = btnControl.querySelector('.btn-primary')
+const prevBtn = btnControl.querySelector('.btn-outline')
 
-// dark mode
-// target the switch element
-const darkModeToggle = document.getElementById("dark__mode__toggle");
-// toggle handler
-const darkModeToggleHandler = event => {
-  if (event.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
+let activeCard = 0
+let step = 0
+
+;(function () {
+  influencers.forEach((influencer) => {
+    cardList.innerHTML += `
+        <div id="${influencer.name}-${influencer.id}" class="card ${
+      influencer.id === activeCard + 1 ? 'active' : ''
+    }">
+        <div class="name">${influencer.name}</div>
+        <div class="flex-row"><i class="fab fa-youtube"></i><span>${
+          influencer.youtube
+        }</span></div>
+        <div class="flex-row"><i class="fab fa-facebook-square"></i><span>${
+          influencer.fb
+        }</span></div>
+        <div class="flex-row"><i class="fab fa-instagram"></i><span>${
+          influencer.ig
+        }</span></div>
+        </div>
+     `
+  })
+})()
+
+function handleCardClicked({ target }) {
+  const cards = cardList.querySelectorAll('.card')
+  const node = target.closest('.card')
+  if (node) {
+    const idArr = node.id.split('-')
+    const num = Number(idArr[idArr.length - 1])
+    cards[activeCard].classList.remove('active')
+    cards[num - 1].classList.add('active')
+    activeCard = num - 1
   }
-};
-// bind the event
-darkModeToggle.addEventListener("change", darkModeToggleHandler);
+}
 
+function handleBtnControlClicked(e) {
+  e.preventDefault()
+  const nowStep = steps[step]
+  if (e.target.matches('.btn-primary') && e.target.innerHTML === '下一步') {
+    const nextStep = steps[step + 1]
+    nowStep.classList.remove('active')
+    nowStep.classList.add('checked')
+    nextStep.classList.add('active')
+    formParts[step].classList.toggle('d-none')
+    formParts[step + 1].classList.toggle('d-none')
+    step += 1
+  } else if (e.target.matches('.btn-outline')) {
+    const prevStep = steps[step - 1]
+    nowStep.classList.remove('active')
+    prevStep.classList.remove('checked')
+    prevStep.classList.add('active')
+    formParts[step].classList.toggle('d-none')
+    formParts[step - 1].classList.toggle('d-none')
+    step -= 1
+  }
+  setBtnDisabled()
+}
 
-//
-const tdToggle = document.querySelector('.table__body')
-
-const tdToggleHandler = event => {
-  console.log(event.target.parentElement)
-  if(event.target.checked){
-    event.target.parentElement.parentElement.style.backgroundColor = '#FF6500';
+function setBtnDisabled() {
+  if (step === 0) {
+    prevBtn.setAttribute('disabled', 'disabled')
   } else {
-     event.target.parentElement.parentElement.style.backgroundColor = '#ffffff';
+    prevBtn.removeAttribute('disabled')
+  }
+
+  if (step === 2) {
+    nextBtn.innerHTML = '送出申請'
+  } else {
+    nextBtn.innerHTML = '下一步'
   }
 }
-tdToggle.addEventListener('change', tdToggleHandler);
 
-
-function displayDemoList() {
-  let htmlContent = `
-          <td class="table__cell table__cell--checkbox">
-            <input type="checkbox" class="td__toggle"/>
-          </td>
-          <td class="table__cell table__cell--id">ID</td>
-          <td class="table__cell table__cell--name">Name</td>
-          <td class="table__cell table__cell--advertiser">
-            <span class="cell__advertiser__line">Advertiser</span>
-            <span class="cell__advertiser__line cell__advertiser__line--group">Group</span>
-          </td>
-          <td class="table__cell table__cell--description">Description</td>
-          <td class="table__cell table__cell--price">Price</td>
-          <td class="table__cell table__cell--starttime">Start Time</td>
-          <td class="table__cell table__cell--endtime">End Time</td>
-          <td class="table__cell table__cell--action">
-            <img class="cell__action__icon"
-              src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/menu.svg"
-              id="action__input_1" alt="menu" />
-            <!-- menu -->
-            <div class="action__menu hidden" role="dialog" aria-modal="true" aria-labelledby="action__input_1" id="action__menu_1">
-              <menu class="menu__body">
-                <menuitem class="menu__item">
-                <img
-                  src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/duplicate.svg"
-                  class="menu__item__icon" />
-                <span>Duplicate</span>
-                </menuitem>
-                <menuitem class="menu__item">
-                <img
-                  src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/edit.svg"
-                  class="menu__item__icon" />
-                <span>Edit</span>
-                </menuitem>
-                <menuitem class="menu__item">
-                <img
-                  src="https://raw.githubusercontent.com/ALPHACamp/WFE-data-table/0f97f3113bff18353154b8644eb0b31fff2a3bef/icons/delete.svg"
-                  class="menu__item__icon" />
-                <span>Delete</span>
-                </menuitem>
-              </menu>
-            </div>
-          </td>
-  `
-  return htmlContent
-}
-
-
-const tbody = document.querySelector('.table__body')
-
-for(let i=0 ; i<100; i++) {
-  const tr = document.createElement('tr')
-  tr.classList.add("table__row")
-  tr.innerHTML = displayDemoList()
-   tbody.appendChild(tr)
-}
-
+cardList.addEventListener('click', handleCardClicked)
+btnControl.addEventListener('click', handleBtnControlClicked)
